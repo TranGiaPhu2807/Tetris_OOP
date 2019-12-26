@@ -1,16 +1,18 @@
 
 
 
-import java.awt.Dimension;
+import java.awt.Dimension;  
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
-import java.io.*;
-import java.net.URL;
-import javax.sound.sampled.*;
-import javax.swing.*;
+
+
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 
 
@@ -20,7 +22,7 @@ class Tetris extends JFrame implements Runnable, KeyListener {
 
 
     private static final String TITLE = " Tetris OOP Project"; // ten
-    private static final int DROP_INTERVAL = 600; // thoi gian drop ms
+    private static final int DROP_INTERVAL = 500; // thoi gian drop ms
   
    
     private static boolean gameOver = false;    
@@ -40,6 +42,9 @@ class Tetris extends JFrame implements Runnable, KeyListener {
     }
     
     Tetris() {
+    	
+    	Runnable task = () -> { playMusic("source/2.wav", 1); };
+        new Thread(task).start();
      
        
 
@@ -99,7 +104,7 @@ class Tetris extends JFrame implements Runnable, KeyListener {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.print(e);
 		}
     } 
 
@@ -283,6 +288,7 @@ class Tetris extends JFrame implements Runnable, KeyListener {
     }
 
     void pauseGame() {
+    	
         paused = !paused;
         drawingboard.setPaused(paused);
        
