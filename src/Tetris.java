@@ -1,7 +1,7 @@
 
 
 
-import java.awt.Dimension;  
+import java.awt.Dimension;   
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -26,7 +26,11 @@ class Tetris extends JFrame implements Runnable, KeyListener {
   
    
     private static boolean gameOver = false;    
-    private Block cp, np;                       // current piece, next piece
+    public static boolean isGameOver() {
+		return gameOver;
+	}
+
+	private Block cp, np;                       // current piece, next piece
     private DrawingBoard drawingboard;          // Object cua class Drawing Board
     private Board board = new Board();             // Object cua class Board
     private boolean paused = false;            
