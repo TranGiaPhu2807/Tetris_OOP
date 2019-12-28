@@ -13,8 +13,11 @@ public class Menu extends JFrame {
 	
 	private JTextField InpuField;
 	private JButton button;
+	public JLabel score;
 	
 	private Main m;
+	private Tetris t;
+	private int scorex=0; 
 	
 	public Menu() {
 		super("MENU");
@@ -27,9 +30,18 @@ public class Menu extends JFrame {
 		InpuField = new JTextField(16);
 		add(InpuField);
 		
+		String x = Integer.toString(0);
+		score = new JLabel(x);
+		add(score);
 		
+		
+	}
 	
-		
+	public void setRow(int r) {
+		remove(score);
+		String x = Integer.toString(r);
+		score = new JLabel(x);
+		add(score);
 	}
 	
 	public String getInText() {

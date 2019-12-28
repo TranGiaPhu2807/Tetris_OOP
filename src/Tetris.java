@@ -38,11 +38,9 @@ class Tetris extends JFrame implements Runnable, KeyListener {
     private boolean paused = false;      
     
                
-    private int rowsCleared = 0;
+    public static int rowsCleared = 0;
                       
-    public int getRowsCleared() {
-		return rowsCleared;
-	}
+   
 
 	private int dropWait = DROP_INTERVAL;     // thoi gian drop ms
     private int tempRes = 0;           		// bien 1 hay 0 de quyet dinh co dat piece hay ko tuy theo class placePiece() trong Board  

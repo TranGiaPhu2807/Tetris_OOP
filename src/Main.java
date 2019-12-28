@@ -21,7 +21,13 @@ import javax.swing.JLabel;
 public class Main extends Canvas implements ActionListener {
 	
 	
+	
+	
+
+	
+	
 	private String name;
+	
 	public String getName() {
 		return name;
 	}
@@ -36,10 +42,10 @@ public class Main extends Canvas implements ActionListener {
     	
    
     	
-     	m.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+     	m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      	m.setSize(400,400);
      	m.setVisible(true);
-
+     	
     }
     
     
@@ -67,8 +73,12 @@ public class Main extends Canvas implements ActionListener {
 	            public void windowClosing(WindowEvent e) {
 	                t.pauseGame();
 	                t.setVisible(false);
+	               
+	                m.setRow(t.rowsCleared);
 	                m.setVisible(true);
-	                System.exit(1);
+	                
+	               
+	                
 
 	              
 	            }
