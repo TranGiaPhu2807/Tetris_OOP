@@ -11,6 +11,7 @@ import java.awt.color.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 
 
@@ -30,7 +31,9 @@ public class Main extends Canvas implements ActionListener {
 	
 	
 	static Menu m = new Menu();
+	
     public static void main(String[] args) {
+    	
    
     	
      	m.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -42,12 +45,14 @@ public class Main extends Canvas implements ActionListener {
     
     @Override
 	public void actionPerformed(ActionEvent event) {
+	    	
     		
     		
 	    	name = m.getInText();
 	        System.out.print(name);
 
 			Tetris t = new Tetris();
+			
 			m.setVisible(false);
         
         
@@ -62,21 +67,15 @@ public class Main extends Canvas implements ActionListener {
 	            public void windowClosing(WindowEvent e) {
 	                t.pauseGame();
 	                t.setVisible(false);
+	                m.setVisible(true);
 	                System.exit(1);
-	                
-	                
+
 	              
 	            }
 	        };
 	        t.addWindowListener(exitListener);	
 	        
-	        
-	        
-	        
-	        
-	        
-	       
-	        
+
 	}
 }
 

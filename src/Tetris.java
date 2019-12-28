@@ -19,11 +19,13 @@ import javax.sound.sampled.Clip;
 
 
 class Tetris extends JFrame implements Runnable, KeyListener {
+	
 
 
     private static final String TITLE = " Tetris OOP Project"; // ten
     private static final int DROP_INTERVAL = 500; // thoi gian drop ms
-  
+    
+    Thread startMusic;
    
     private static boolean gameOver = false;    
     public static boolean isGameOver() {
@@ -33,11 +35,16 @@ class Tetris extends JFrame implements Runnable, KeyListener {
 	private Block cp, np;                       // current piece, next piece
     private DrawingBoard drawingboard;          // Object cua class Drawing Board
     private Board board = new Board();             // Object cua class Board
-    private boolean paused = false;            
+    private boolean paused = false;      
+    
                
     private int rowsCleared = 0;
                       
-    private int dropWait = DROP_INTERVAL;     // thoi gian drop ms
+    public int getRowsCleared() {
+		return rowsCleared;
+	}
+
+	private int dropWait = DROP_INTERVAL;     // thoi gian drop ms
     private int tempRes = 0;           		// bien 1 hay 0 de quyet dinh co dat piece hay ko tuy theo class placePiece() trong Board  
     private char rotateDirection = 'R'; 	// quyet dinh huong quay
   
@@ -47,11 +54,12 @@ class Tetris extends JFrame implements Runnable, KeyListener {
     
     Tetris() {
     	
-    	Runnable task = () -> { playMusic("source/2.wav", 1); };
-        new Thread(task).start();
+		Runnable task = () -> { playMusic("source/1.wav", 1); };
+		startMusic = new Thread(task);
+		startMusic.start();
      
-       
-
+    	
+    	
         this.setTitle(TITLE);
 
 
@@ -113,10 +121,13 @@ class Tetris extends JFrame implements Runnable, KeyListener {
     } 
 
     public void run() {  //run function trong Runable interface chi co the execute bang Thread  
+    	
+    	
         while (!gameOver) {
             if (!paused) {
-               
+            	
                 tempRes = board.placePiece(cp.getCurrentState(), cp.getRowNum() + 1, cp.getColNum(), false);
+                
 
                 if (tempRes == 1) {
                     
@@ -129,13 +140,15 @@ class Tetris extends JFrame implements Runnable, KeyListener {
             }
 
             try {
-                Thread.sleep(dropWait);  // time truoc khi tiep tuc 600ms 
+                Thread.sleep(dropWait);  // time truoc khi tiep tuc 500ms 
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
 
         }
     }
+    
+   
 
     private void piecePlaced() {
         int rows;
@@ -145,7 +158,10 @@ class Tetris extends JFrame implements Runnable, KeyListener {
         if (board.isGameOver()) {
             gameOver = true;
             drawingboard.setGameOver(true);
+            
             pauseGame();
+            
+            
         //kt game over hay chua
             
         } else {
@@ -259,6 +275,9 @@ class Tetris extends JFrame implements Runnable, KeyListener {
                 drawGame();
             }
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+        	new Thread(() -> {
+                playMusic("source/down.wav", 0);
+            }).start();
             
             boolean movedDown = false;
             while (!movedDown) {
