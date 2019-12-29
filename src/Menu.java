@@ -129,6 +129,7 @@ public class Menu extends JFrame {
 	//not only set new row but also check new h score person
 	public void setRow(int r) {
 		remove(score);
+		remove(button);
 		String x = Integer.toString(r);
 		score = new JLabel(x);
 		score.setBounds(220,70,200,20);
@@ -137,13 +138,16 @@ public class Menu extends JFrame {
 		label2.setText("");
 		
 		add(label2);
-		remove(button);
+		
+		
+		
+		
+	}
+	public void remove() {
 		remove(h_score);
 		remove(scoreh);
 		remove(h_person);
 		remove(scorehp);
-		
-		
 	}
 	
 	public String getInText() {

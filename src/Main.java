@@ -116,18 +116,21 @@ public class Main extends Canvas implements ActionListener {
 	            public void windowClosing(WindowEvent e) {
 	                t.pauseGame();
 	                t.setVisible(false);
+	                
 	                if (t.rowsCleared>h_score) {
 	                	try {
+	                		m.remove();
 							write_h_name(name);
 							write_h_score(t.rowsCleared);
+							m.set_highScore(t.rowsCleared);
+							m.set_highScore_Person(name);
 						} catch (IOException e2) {
 							// TODO Auto-generated catch block
 							e2.printStackTrace();
 						}
-		                m.setRow(t.rowsCleared);
-		                m.set_highScore(t.rowsCleared);
 		            }
-	                m.set_highScore_Person(name);
+	                m.setRow(t.rowsCleared);
+	                
  	                m.setVisible(true);
 	                
 	                
