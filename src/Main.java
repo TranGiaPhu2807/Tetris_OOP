@@ -10,6 +10,10 @@ import java.awt.color.*;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -20,11 +24,22 @@ import javax.swing.JLabel;
 
 public class Main extends Canvas implements ActionListener {
 	
-	
-	
-	
-
-	
+	private Store s;
+	Tetris t;
+	private static String h_name;
+	private static int h_score;
+	static String getH_name() {
+		return h_name;
+	}
+	public static void setH_name(String h_name) {
+		Main.h_name = h_name;
+	}
+	public static int getH_score() {
+		return h_score;
+	}
+	public static void setH_score(int h_score) {
+		Main.h_score = h_score;
+	}
 	
 	private String name;
 	
@@ -36,31 +51,57 @@ public class Main extends Canvas implements ActionListener {
 	}
 	
 	
-	static Menu m = new Menu();
+	static Menu m;
 	
     public static void main(String[] args) {
     	
-   
     	
+    	try {
+			Store s = new Store();
+			h_name=s.getHname();
+			h_score = s.getHscore();
+			System.out.print(h_score);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+    	
+    	m = new Menu();
      	m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     	m.setSize(400,400);
+     	m.setSize(400,450);
      	m.setVisible(true);
      	
     }
+
+    public void write_h_name(String newName) throws IOException {
+		
+		String fileContent = newName;
+		 
+		BufferedWriter writer = new BufferedWriter(new FileWriter("source/high_score_person.txt"));
+		writer.write(fileContent);
+		writer.close();
+		
+		
+	}
+	public void write_h_score(int S_score) throws IOException {
+		String fileContent2 = Integer.toString(S_score);
+		 
+		BufferedWriter writer2 = new BufferedWriter(new FileWriter("source/high_score.txt"));
+		writer2.write(fileContent2);
+		writer2.close();
+			
+	}
+	
+
     
     
     @Override
 	public void actionPerformed(ActionEvent event) {
-	    	
-    		
-    		
 	    	name = m.getInText();
-	        System.out.print(name);
-
-			Tetris t = new Tetris();
-			
+			t = new Tetris();
 			m.setVisible(false);
-        
+			
+			
         
 	        t.setSize(t.getWidth(), t.getHeight());
 	        t.setVisible(true);
@@ -68,25 +109,38 @@ public class Main extends Canvas implements ActionListener {
 	       
 	        t.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	        
+	        
 	        WindowListener exitListener = new WindowAdapter() {
-	            @Override
+	            @SuppressWarnings("deprecation")
+				@Override
 	            public void windowClosing(WindowEvent e) {
 	                t.pauseGame();
 	                t.setVisible(false);
-	               
-	                m.setRow(t.rowsCleared);
-	                m.setVisible(true);
+	                if (t.rowsCleared>h_score) {
+	                	try {
+							write_h_name(name);
+							write_h_score(t.rowsCleared);
+						} catch (IOException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+		                m.setRow(t.rowsCleared);
+		                m.set_highScore(t.rowsCleared);
+		            }
+	                m.set_highScore_Person(name);
+ 	                m.setVisible(true);
 	                
-	               
 	                
-
-	              
+						
+	               
+	               
+	               
 	            }
 	        };
 	        t.addWindowListener(exitListener);	
-	        
-
 	}
 }
+
+
 
    
