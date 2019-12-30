@@ -8,8 +8,9 @@ import java.io.IOException;
 
 
 public class Store {
-	Tetris t;
-	Menu m;
+	private Tetris t;
+	private Menu m;
+	
 	private int hscore;
 	private String hname;
 	

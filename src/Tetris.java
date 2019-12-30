@@ -52,7 +52,7 @@ class Tetris extends JFrame implements Runnable, KeyListener {
     
     
 	void MusicThread(){
-    	Runnable task = () -> { playMusic("source/2.wav", 1); };
+    	Runnable task = () -> { playMusic("source/2.wav", 0); };
     	startMusic = new Thread(task);
 		startMusic.start();
 		
@@ -61,7 +61,7 @@ class Tetris extends JFrame implements Runnable, KeyListener {
     Tetris() {
     	
 		
-    	MusicThread();
+    	
     	
     	
         this.setTitle(TITLE);

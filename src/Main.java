@@ -11,9 +11,15 @@ import java.awt.color.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -28,6 +34,7 @@ public class Main extends Canvas implements ActionListener {
 	Tetris t;
 	private static String h_name;
 	private static int h_score;
+	Clip clip;
 	static String getH_name() {
 		return h_name;
 	}
@@ -92,11 +99,24 @@ public class Main extends Canvas implements ActionListener {
 			
 	}
 	
+	public void musicx() {
+		AudioInputStream music;
+        try {
+			music = AudioSystem.getAudioInputStream(new File("source/2.wav"));
+			clip = AudioSystem.getClip();
+			clip.open(music);
+			clip.start();
+		} catch (Exception e) {
+			System.out.print(e);
+		}
+	}
+	
 
     
     
     @Override
 	public void actionPerformed(ActionEvent event) {
+    		
 	    	name = m.getInText();
 			t = new Tetris();
 			m.setVisible(false);
@@ -108,6 +128,7 @@ public class Main extends Canvas implements ActionListener {
 	        
 	       
 	        t.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	        musicx();
 	        
 	        
 	        WindowListener exitListener = new WindowAdapter() {
@@ -116,6 +137,7 @@ public class Main extends Canvas implements ActionListener {
 	            public void windowClosing(WindowEvent e) {
 	                t.pauseGame();
 	                t.setVisible(false);
+	                clip.stop();
 	                
 	                if (t.rowsCleared>h_score) {
 	                	try {
@@ -130,17 +152,12 @@ public class Main extends Canvas implements ActionListener {
 						}
 		            }
 	                m.setRow(t.rowsCleared);
-	                
  	                m.setVisible(true);
-	                
-	                
-						
-	               
-	               
-	               
 	            }
 	        };
 	        t.addWindowListener(exitListener);	
+	        
+	       
 	}
 }
 
