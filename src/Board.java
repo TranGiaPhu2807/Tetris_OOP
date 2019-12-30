@@ -25,8 +25,9 @@ class Board {
     				// ta tra lai gia tri 1 la ko dat
                     
                     else {
+                    	//day moi la phan dat
                         if (shouldPlace) {
-                            boardArray[row][col] |= aPiece[c]; // dat vao bang so cua block
+                            boardArray[row][col] |= aPiece[c]; // dat vao phai xai | vi ko muon trung len nhau
                         }
                         col++;
                     }
@@ -40,7 +41,8 @@ class Board {
         }
         return 0;
     }
-
+    
+    //co thang nao cham toi dau thi end game
     boolean isGameOver() {
         for (int i = 0; i < boardArray[0].length; i++) {
             if (boardArray[0][i] != 0) {
@@ -59,7 +61,7 @@ class Board {
                 if (boardArray[r][c] != 0) {
                     completedLength++;
                 }
-              //kt cai o nao =0 thi templength +1
+              //kt cai o nao khac =0 thi templength +1
             }
 
             if (completedLength >= boardArray[0].length) { //temp length dai hon x
@@ -82,8 +84,6 @@ class Board {
             System.arraycopy(boardArray[y - 1], 0, boardArray[y], 0, boardWidth);
             y--;
         }
-      
-    
     }
 
     int[][] getBoardArray() {

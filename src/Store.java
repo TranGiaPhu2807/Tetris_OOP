@@ -8,8 +8,7 @@ import java.io.IOException;
 
 
 public class Store {
-	private Tetris t;
-	private Menu m;
+	
 	
 	private int hscore;
 	private String hname;
@@ -17,9 +16,7 @@ public class Store {
 	public int getHscore() {
 		return hscore;
 	}
-	public void setHscore(int hscore) {
-		this.hscore = hscore;
-	}
+	
 	public String getHname() {
 		return hname;
 	}

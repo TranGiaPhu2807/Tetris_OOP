@@ -28,13 +28,13 @@ import javax.swing.JLabel;
 
 
 
-public class Main extends Canvas implements ActionListener {
+public class Main implements ActionListener {
 	
-	private Store s;
-	Tetris t;
+	
+	private Tetris t;
 	private static String h_name;
 	private static int h_score;
-	Clip clip;
+	private Clip clip;
 	static String getH_name() {
 		return h_name;
 	}
@@ -105,6 +105,7 @@ public class Main extends Canvas implements ActionListener {
 			music = AudioSystem.getAudioInputStream(new File("source/2.wav"));
 			clip = AudioSystem.getClip();
 			clip.open(music);
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
 			clip.start();
 		} catch (Exception e) {
 			System.out.print(e);

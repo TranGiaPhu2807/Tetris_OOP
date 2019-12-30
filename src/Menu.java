@@ -18,15 +18,15 @@ public class Menu extends JFrame {
 	
 	private JTextField InpuField;
 	private JButton button;
-	public JLabel score;
-	JLabel h_score;
-	JLabel scorehp;
-	JLabel h_person;
-	JLabel scoreh;
+	private JLabel score;
+	private JLabel h_score;
+	private JLabel scorehp;
+	private JLabel h_person;
+	private JLabel scoreh;
 	
 	
 	private Main m;
-	private Store s;
+	
 	
 	
 	public Menu() {

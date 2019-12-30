@@ -32,16 +32,14 @@ class Block {
     private static final int[][] tetrisBlockI = {{7}, {7}, {7}, {7}};
     
 
-    private int[][] currentBlockState;
+    private int[][] currentBlockState; // return which type
 
 
 
     Block() {
     }
-
-    Block(int[][] currentBlock) {
-        currentBlockState = currentBlock;
-    }
+    
+  
     
 
     int[][] getRandom() {

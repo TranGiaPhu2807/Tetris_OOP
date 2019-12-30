@@ -39,8 +39,7 @@ class DrawingBoard extends Canvas {
     //thong bao diem
     private static final int ROWSXLOC = Board.boardWidth * PIECE_WIDTH + 15;
     private static final int ROWSYLOC = 160 ;
-    
-    Tetris[] screens;
+ 
 
     public void paint(Graphics g) { // su dung trong Graphic
         if (screen == null) {

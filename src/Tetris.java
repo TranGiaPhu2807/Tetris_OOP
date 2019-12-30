@@ -25,7 +25,6 @@ class Tetris extends JFrame implements Runnable, KeyListener {
     private static final String TITLE = " Tetris OOP Project"; // ten
     private static final int DROP_INTERVAL = 500; // thoi gian drop ms
     
-    Thread startMusic;
    
     private static boolean gameOver = false;    
     public static boolean isGameOver() {
@@ -46,22 +45,11 @@ class Tetris extends JFrame implements Runnable, KeyListener {
     private int tempRes = 0;           		// bien 1 hay 0 de quyet dinh co dat piece hay ko tuy theo class placePiece() trong Board  
     private char rotateDirection = 'R'; 	// quyet dinh huong quay
   
-    Tetris(DrawingBoard dw ){
-    	
-    }
+
     
-    
-	void MusicThread(){
-    	Runnable task = () -> { playMusic("source/2.wav", 0); };
-    	startMusic = new Thread(task);
-		startMusic.start();
-		
-    }
+ 
     
     Tetris() {
-    	
-		
-    	
     	
     	
         this.setTitle(TITLE);
@@ -86,7 +74,7 @@ class Tetris extends JFrame implements Runnable, KeyListener {
         this.addKeyListener(this);
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();  
-        //cho chiều rộng và chiều cao của một thành phần (chính xác là số nguyên) trong một đối tượng
+        //set vi tri cua window
         this.setLocation(dim.width/2-this.getWidth(), dim.height/2-this.getHeight());
         
         //Toolkit abstract class are used to bind the various components to particular native toolkit implementations.
@@ -124,7 +112,7 @@ class Tetris extends JFrame implements Runnable, KeyListener {
 		}
     } 
 
-    public void run() {  //run function trong Runable interface chi co the execute bang Thread  
+    public void run() {  //run function trong Runnable interface chi co the execute bang Thread  
     	
     	
         while (!gameOver) {
@@ -157,7 +145,7 @@ class Tetris extends JFrame implements Runnable, KeyListener {
     private void piecePlaced() {
         int rows;
 
-        board.placePiece(cp.getCurrentState(), cp.getRowNum(), cp.getColNum(), true);
+        board.placePiece(cp.getCurrentState(), cp.getRowNum(), cp.getColNum(), true); // dat piece trong board
 
         if (board.isGameOver()) {
             gameOver = true;
@@ -170,10 +158,7 @@ class Tetris extends JFrame implements Runnable, KeyListener {
             
         } else {
         	//ko thua thi tiep tuc cai moi va tinh row clear
-           
             cp = np;
-
-        
             np = new Block();
             np.getRandom();
 
