@@ -9,7 +9,7 @@ import java.awt.Image;
 
 //A Canvas component represents a blank rectangular area of the screen onto which the application can draw or
 //from which the application can trap input events from the user.
-
+//Single responsibility principle chi chiu trach nhiem cho viec drawingboard, co the thay doi ma 
 class DrawingBoard extends Canvas { 
 
     private static final int PIECE_WIDTH = 16;
@@ -18,7 +18,7 @@ class DrawingBoard extends Canvas {
 
     private static final int SIZEPIECE = 14;
     private static final int GAMEAREAWIDTH = Board.boardWidth * PIECE_WIDTH ; // khung khong giang tro choi
-    private static final int GAMEAREAHEIGHT = Board.boardHeight * PIECE_WIDTH ; //khung khong giang tro choi 
+    private static final int GAMEAREAHEIGHT = Board.boardHeight * PIECE_WIDTH -5; //khung khong giang tro choi** 
 
     private static final int GAMEAREAXLOC = 1; //khung khong giang tro choi tu vi tri 1
     private static final int GAMEAREAYLOC = 1; //khung khong giang tro choi tu vi tri 1
@@ -88,7 +88,7 @@ class DrawingBoard extends Canvas {
 
         // paint cai board array nhung piece da duoc dat
         
-        r = 5;
+        r = 2;
         c = 3;
         for (int[] aBoardArray : boardArray) {
             for (int l = 0; l < boardArray[0].length; l++) {
@@ -129,9 +129,20 @@ class DrawingBoard extends Canvas {
         graphics.drawString("Completed Rows: ", ROWSXLOC, ROWSYLOC);
         graphics.drawString(String.valueOf(completedRows), ROWSXLOC+20, ROWSYLOC+20); //lay diem tu completeRows de paint diem
 
-       
-
-       
+        if (!drawGameOver && !drawPaused) {
+        graphics.setFont(new Font("", Font.BOLD, 12));
+        graphics.setColor(Color.GREEN);
+        graphics.drawString("Arrow Key ", Board.boardWidth * PIECE_WIDTH + 20, 260);
+        graphics.drawString("to move", Board.boardWidth * PIECE_WIDTH + 20, 280);
+        graphics.setColor(Color.RED);
+        graphics.drawString("SPACE to ", Board.boardWidth * PIECE_WIDTH + 20, 300);
+        graphics.drawString("put it down fast", Board.boardWidth * PIECE_WIDTH + 20, 320);
+        graphics.setColor(Color.BLUE);
+        graphics.drawString("P to pause &", Board.boardWidth * PIECE_WIDTH + 20, 340);
+        graphics.drawString("R to change ", Board.boardWidth * PIECE_WIDTH + 20, 360);
+        graphics.drawString("rotate direction", Board.boardWidth * PIECE_WIDTH + 20, 380);
+        
+        }
 
       
         if (drawGameOver) { //paint gameover, drawGameOver la boolean true or false, true thi thuc hien paint gameover
@@ -141,6 +152,7 @@ class DrawingBoard extends Canvas {
             graphics.drawString("GAME OVER!", Board.boardWidth * PIECE_WIDTH + 20, 300);
             graphics.drawString("Press 'x' ", Board.boardWidth * PIECE_WIDTH + 20, 320);
             graphics.drawString("to restart", Board.boardWidth * PIECE_WIDTH + 20, 340);
+            
             
             
         

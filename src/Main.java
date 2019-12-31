@@ -126,6 +126,7 @@ public class Main implements ActionListener {
         
 	        t.setSize(t.getWidth(), t.getHeight());
 	        t.setVisible(true);
+	        t.setResizable(false);
 	        
 	       
 	        t.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -138,6 +139,7 @@ public class Main implements ActionListener {
 	            public void windowClosing(WindowEvent e) {
 	                t.pauseGame();
 	                t.setVisible(false);
+	                
 	                clip.stop();
 	                
 	                if (t.rowsCleared>h_score) {

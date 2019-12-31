@@ -1,4 +1,4 @@
-
+//Single responsibility principle chi chiu trach nhiem cho object board, co the thay doi 
 
 
 class Board {
@@ -14,7 +14,7 @@ class Board {
  // kiem tra xem diem trong khoi hinh co dat duoc khong, neu cac so khac thi tra lai 1, con ko tra lai 0
     int placePiece(int[][] Piece, int row, int col, boolean shouldPlace) {
         int column = col;
-        for (int[] aPiece : Piece) {
+        for (int[] aPiece : Piece) { //iterate an array (lap lai 1 array)
             for (int c = 0; c < Piece[0].length; c++) {
                 try {
                     if (boardArray[row][col] != 0 && aPiece[c] != 0) {

@@ -1,5 +1,6 @@
 import java.awt.Color;
 
+// Single responsibility principle chi chiu trach nhiem cho object block, co the thay doi 
 class Block {
 	
 	//vi tri xuat phat
