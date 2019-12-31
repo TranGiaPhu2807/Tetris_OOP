@@ -1,8 +1,10 @@
-# Tetris_OOP Project
+﻿# Tetris_OOP Project
+
 
 This is the source code of Tetris Game written in java and eclipse
 
 #Introduction  
+
 
 Tetris originally designed and programmed by the Soviet Russian software engineer 
 
@@ -15,6 +17,7 @@ This version has a 30x 20 (height x width) board array. The point for a single c
  
 
 #Game rules 
+
 
 Player can use LEFT and RIGHT arrow key to moving the piece to the position that he/she want 
 
